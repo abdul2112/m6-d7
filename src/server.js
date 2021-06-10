@@ -1,12 +1,13 @@
 import express from 'express';
-// import cors from 'cors';
 import listEndpoints from 'express-list-endpoints';
+import blogsRouter from './services/blogs/index.js';
+import authorsRouter from './services/authors/index.js';
 import {
   badRequestErrorHandler,
   notFoundErrorHandler,
   catchAllErrorHandler,
 } from './errorHandlers.js';
-import blogsRouter from './services/blogs/index.js';
+
 const app = express();
 
 const port = process.env.PORT || 3001;
@@ -14,10 +15,10 @@ const port = process.env.PORT || 3001;
 // ******** MIDDLEWARES ************
 
 app.use(express.json());
-// server.use(cors());
 
 // ******** ROUTES ************
 app.use('/blogs', blogsRouter);
+app.use('/authors', authorsRouter);
 
 // ******** ERROR MIDDLEWARES ************
 
